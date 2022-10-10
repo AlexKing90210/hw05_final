@@ -85,7 +85,7 @@ class PostURLTests(TestCase):
         self.assertEqual(response.status_code, HTTPStatus.NOT_FOUND)
         # Проверьте, что используется шаблон core/404.html
         self.assertTemplateUsed(response, 'core/404.html')
-        
+    
     # Проверяем доступность страниц для авторизованного пользователя
     def test_posts_create_exists_at_desired_location(self):
         """Страница /posts/create/ доступна авторизованному пользователю."""
@@ -100,4 +100,3 @@ class PostURLTests(TestCase):
         self.authorized_client.force_login(PostURLTests.user)
         response = self.authorized_client.get(f"/posts/{self.post.id}/edit/")
         self.assertEqual(response.status_code, HTTPStatus.OK)
-    

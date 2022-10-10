@@ -5,7 +5,7 @@ from django import forms
 class PostForm(forms.ModelForm):
     class Meta:
         model = Post
-        fields = ('text', 'group','image')
+        fields = ('text', 'group', 'image')
         # labels = {
         #     'text': ('Текст поста'),
         #     'group': ('Группа'),
@@ -16,6 +16,7 @@ class PostForm(forms.ModelForm):
         #     'group': ('Укажите группу для поста'),
         #     'image': ('Загрузите аватар для пользователя')
         # }
+
 
 class CommentForm(forms.ModelForm):
     class Meta:
