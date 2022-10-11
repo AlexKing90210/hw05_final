@@ -1,3 +1,4 @@
+from django.db.models.constraints import Q
 from django.db import models
 from django.contrib.auth import get_user_model
 
@@ -118,7 +119,11 @@ class Follow(CreatedModel):
             models.UniqueConstraint(
                 fields=['user', 'author'], 
                 name='unique follows'
-                )
+                ),
+            # models.CheckConstraint(
+            #    check=Q(user__gt=author),
+            #    name='Dont subscribe to yourself'
+            # )
         ]
 
     # Ограничить подписку на себя и дублирующие подписки
