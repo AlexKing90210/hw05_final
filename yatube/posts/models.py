@@ -117,13 +117,8 @@ class Follow(CreatedModel):
         verbose_name_plural = 'Подписки'
         constraints = [
             models.UniqueConstraint(
-                fields=['user', 'author'], 
+                fields=['user', 'author'],
                 name='unique follows'
                 ),
-            # models.CheckConstraint(
-            #    check=Q(user__gt=author),
-            #    name='Dont subscribe to yourself'
-            # )
         ]
-
-    # Ограничить подписку на себя и дублирующие подписки
+        unique_together = ('user', 'author',)
