@@ -1,6 +1,7 @@
 from django.db import models
-from core.models import CreatedModel
 from django.contrib.auth import get_user_model
+
+from core.models import CreatedModel
 
 User = get_user_model()
 
@@ -18,6 +19,9 @@ class Group(models.Model):
         verbose_name='Описание группы',
         help_text='Опишите группу')
 
+    class Meta:
+        verbose_name_plural = 'Группы'
+    
     def __str__(self):
         return self.title
 
@@ -72,7 +76,7 @@ class Comment(CreatedModel):
         related_name='comments',
         blank=True,
         null=True,
-        verbose_name='Комментарии',
+        verbose_name='Комментарии к посту',
         help_text='Комментарии поста'
     )
     author = models.ForeignKey(
@@ -86,20 +90,16 @@ class Comment(CreatedModel):
         verbose_name='Текст комментария',
         help_text='Введите текст комментария'
     )
-    # created = models.DateTimeField(
-    #    verbose_name='Дата комментария',
-    #    help_text='Дата комментария',
-    #    auto_now_add=True
-    # )
 
     class Meta:
         ordering = ["-created"]
+        verbose_name_plural = 'Комментарии'
 
     def __str__(self):
         return self.text
 
 
-class Follow(models.Model):
+class Follow(CreatedModel):
     user = models.ForeignKey(
         User,
         on_delete=models.CASCADE,
@@ -110,3 +110,9 @@ class Follow(models.Model):
         on_delete=models.CASCADE,
         related_name="following"
     )
+
+    class Meta:
+        ordering = ["-created"]
+        verbose_name_plural = 'Подписки'
+
+    # Ограничить подписку на себя и дублирующие подписки

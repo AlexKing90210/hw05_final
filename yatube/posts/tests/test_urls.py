@@ -45,27 +45,6 @@ class PostURLTests(TestCase):
                 response = self.authorized_client.get(template)
                 self.assertTemplateUsed(response, url)
 
-    # Проверяем общедоступные страницы
-    # def test_home_url_exists_at_desired_location(self):
-    #    """Страница / доступна любому пользователю."""
-    #    response = self.guest_client.get('/')
-    #    self.assertEqual(response.status_code, HTTPStatus.OK)
-
-    # def test_group_slug_url_exists_at_desired_location(self):
-    #    """Страница /group/slug/ доступна любому пользователю."""
-    #    response = self.guest_client.get('/group/test-slug/')
-    #    self.assertEqual(response.status_code, HTTPStatus.OK)
-
-    # def test_profile_username_url_exists_at_desired_location(self):
-    #    """Страница /profile/username/ доступна любому пользователю."""
-    #    response = self.guest_client.get('/profile/testUser/')
-    #    self.assertEqual(response.status_code, HTTPStatus.OK)
-
-    # def test_posts_postid_url_exists_at_desired_location(self):
-    #    """Страница /posts/post_id/ доступна любому пользователю."""
-    #    response = self.guest_client.get(f'/posts/{self.post.id}/')
-    #    self.assertEqual(response.status_code, HTTPStatus.OK)
-
     def test_url_exists_at_desired_location(self):
         templates_url_names = {
             "/": "posts/index.html",
