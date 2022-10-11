@@ -118,5 +118,5 @@ class Follow(CreatedModel):
             models.UniqueConstraint(
                 fields=['user', 'author'],
                 name='unique follows'
-                )]
+            )]
         unique_together = ('user', 'author',)
