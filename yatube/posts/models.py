@@ -114,5 +114,11 @@ class Follow(CreatedModel):
     class Meta:
         ordering = ["-created"]
         verbose_name_plural = 'Подписки'
+        constraints = [
+            models.UniqueConstraint(
+                fields=['user', 'author'], 
+                name='unique follows'
+                )
+        ]
 
     # Ограничить подписку на себя и дублирующие подписки
