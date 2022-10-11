@@ -1,4 +1,3 @@
-from django.db.models.constraints import Q
 from django.db import models
 from django.contrib.auth import get_user_model
 
@@ -22,7 +21,7 @@ class Group(models.Model):
 
     class Meta:
         verbose_name_plural = 'Группы'
-    
+
     def __str__(self):
         return self.title
 
@@ -119,6 +118,5 @@ class Follow(CreatedModel):
             models.UniqueConstraint(
                 fields=['user', 'author'],
                 name='unique follows'
-                ),
-        ]
+                )]
         unique_together = ('user', 'author',)
